@@ -7,6 +7,7 @@ function addTask() {
     if(task) {
         createTaskElement(task);
         taskInput.value = '';
+        saveTasks();
     } else{
         alert('Please enter a task');
     }
@@ -25,5 +26,7 @@ function saveTasks(){
     taskList.querySelectorAll('li').forEach(function(item){
         tasks.push(item.textContent.trim());
     });
+
+    localStorage.setItem('tasks', JSON.stringify(tasks));
 
 }
