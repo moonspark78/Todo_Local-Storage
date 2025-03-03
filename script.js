@@ -18,5 +18,12 @@ function createTaskElement(task) {
     const listItem = document.createElement('li');
     listItem.textContent = task;
     taskList.appendChild(listItem);
-
 };
+
+function saveTasks(){
+    let tasks = [];
+    taskList.querySelectorAll('li').forEach(function(item){
+        tasks.push(item.textContent.trim());
+    });
+
+}
