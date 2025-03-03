@@ -2,6 +2,8 @@ const addButton= document.getElementById('addTask');
 const taskInput = document.getElementById('taskInput');
 const taskList = document.getElementById('taskList');
 
+loadTasks();
+
 function addTask() {
     const task = taskInput.value.trim();
     if(task) {
@@ -26,7 +28,10 @@ function saveTasks(){
     taskList.querySelectorAll('li').forEach(function(item){
         tasks.push(item.textContent.trim());
     });
-
     localStorage.setItem('tasks', JSON.stringify(tasks));
-
 }
+
+function loadTasks(){
+    const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
+    tasks.forEach(createTaskElement);
+};
