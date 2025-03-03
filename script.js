@@ -20,7 +20,18 @@ addButton.addEventListener('click', addTask);
 function createTaskElement(task) {
     const listItem = document.createElement('li');
     listItem.textContent = task;
-    taskList.appendChild(listItem);
+     // Création du bouton de suppression
+     const deleteButton = document.createElement('button');
+     deleteButton.innerHTML = '🗑️'; // Icône poubelle
+     deleteButton.classList.add('delete-btn');
+
+     deleteButton.addEventListener('click', function() {
+         listItem.remove(); // Supprime l'élément <li>
+         saveTasks();  // Met à jour le localStorage
+     });
+     
+     listItem.appendChild(deleteButton);
+     taskList.appendChild(listItem);
 };
 
 function saveTasks(){
@@ -35,3 +46,4 @@ function loadTasks(){
     const tasks = JSON.parse(localStorage.getItem('tasks')) || [];
     tasks.forEach(createTaskElement);
 };
+
